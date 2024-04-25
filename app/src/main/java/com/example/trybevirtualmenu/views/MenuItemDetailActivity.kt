@@ -1,6 +1,8 @@
 package com.example.trybevirtualmenu.views
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.trybevirtualmenu.R
 import com.example.trybevirtualmenu.models.MenuDatabase
@@ -13,6 +15,7 @@ class MenuItemDetailActivity : AppCompatActivity() {
     private val image: ShapeableImageView by lazy { findViewById(R.id.detail_image) }
     private val description: MaterialTextView by lazy { findViewById(R.id.detail_description) }
     private val price: MaterialTextView by lazy { findViewById(R.id.detail_price) }
+    private val button: Button by lazy { findViewById(R.id.detail_back) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,5 +28,10 @@ class MenuItemDetailActivity : AppCompatActivity() {
         image.setImageResource(dish.image)
         description.text = dish.description
         price.text = String.format("R$ %.2f", dish.price)
+
+        button.setOnClickListener {
+            val intent = Intent(baseContext, MainActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
