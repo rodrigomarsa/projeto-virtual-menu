@@ -11,7 +11,7 @@ import com.example.trybevirtualmenu.models.Dish
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textview.MaterialTextView
 
-class DishAdapter(private val dishes: List<Dish>):Adapter<DishAdapter.DishViewHolder>() {
+class DishAdapter(private val dishes: List<Dish>) : Adapter<DishAdapter.DishViewHolder>() {
 
     private var dishListener: DishItemListener? = null
 
@@ -19,19 +19,20 @@ class DishAdapter(private val dishes: List<Dish>):Adapter<DishAdapter.DishViewHo
         this.dishListener = listener
     }
 
-    class DishViewHolder(view: View, dishListener: DishItemListener?): ViewHolder(view) {
+    class DishViewHolder(view: View, dishListener: DishItemListener?) : ViewHolder(view) {
         val name: MaterialTextView = view.findViewById(R.id.item_menu_name)
         val image: ShapeableImageView = view.findViewById(R.id.item_menu_image)
 
         init {
-            view.setOnClickListener{
+            view.setOnClickListener {
                 dishListener?.onDishClick(view, bindingAdapterPosition)
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DishViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_menu_layout, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_menu_layout, parent, false)
         return DishViewHolder(view, dishListener)
     }
 
